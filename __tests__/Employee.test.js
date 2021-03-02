@@ -12,14 +12,24 @@ describe('Employee', () => {
 
         it("should throw an error if provided no information",() => {
             const cb = () => new Employee();
-            const err = new Error('You need to input Employee information!')
-            expect(cb).toThrow(err);
+            
+            expect(cb).toThrow();
         });
-        it("should throw an error if not provided id");
-        it("should throw an error if not provided email");
-        it("should throw and error if 'name' is not a string", );
-        it("should throw an error if 'id' is not a number")
-        it("should throw an error if 'email' is not a string.")
+        it("should throw an error if not provided id", () => {
+            const cb = () => new Employee('Yuan');
+            const err = new Error("Expected parameter 'id' to be a number");
 
-    })
-})
+            expect(cb).toThrowError(err);
+        });
+        it("should throw an error if not provided email", () => {
+            const cb = () => new Employee('Yuan', 3062);
+            const err = new Error("Expected parameter 'email' to be a non-empty string");
+
+            expect(cb).toThrowError(err);
+        });
+        it("should throw and error if 'name' is not a string", );
+        it("should throw an error if 'id' is not a number");
+        it("should throw an error if 'email' is not a string.");
+
+    });
+});
