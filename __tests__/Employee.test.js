@@ -7,7 +7,7 @@ describe('Employee', () => {
 
             expect(employee.name).toEqual("Melaku");
             expect(employee.id).toEqual(3025);
-            expect(employee.email).toEqual("mlichebo@example.com")
+            expect(employee.email).toEqual("mlichebo@example.com");
         });
 
         it("should throw an error if provided no information",() => {
