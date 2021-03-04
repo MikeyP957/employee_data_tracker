@@ -3,13 +3,16 @@ const fs = require('fs');
 
 //generates html card for each type of employee
 const generateManager = require('./src/generateManager');
+const generateEngineer = require('./src/generateEngineer');
+const generateIntern = require('./src/generateIntern');
+
 //inquirer for each employee type depending on pertinent information
 const typeOfEmployee = () => inquirer.prompt([
     {
         type: 'list',
         name: 'employee',
         message: 'Which type of employee do you want to create?',
-        choices: ["Engineer","Manager","Intern"],
+        choices: ["Manager", "Engineer", "Intern"],
     }
 ])
 const managerInput = () => inquirer.prompt ([
@@ -34,7 +37,7 @@ const managerInput = () => inquirer.prompt ([
         message: "What is their office number?"
     },
 ])
-const engineerInput = () => inquirer.promt([
+const engineerInput = () => inquirer.prompt([
     {
         type: "input",
         name: "name",
@@ -54,7 +57,7 @@ const engineerInput = () => inquirer.promt([
         type: "input",
         name: "github",
         message: "What is their github username?"
-    }    
+    }
 ])
 const internInput = () => inquirer.prompt([
     {
@@ -102,16 +105,16 @@ const init = () => {
                 
             })
         }
-        // if(answers.employee === 'Engineer'){
-        //     engineerInput().then((input) => {
-        //         console.log(input)
-        //     })
-        // }
-        // if(answers.employee === 'Intern'){
-        //     internInput().then((input) => {
-        //         console.log(input)
-        //     })
-        // }
+        if(answers.employee === 'Engineer'){
+            engineerInput().then((input) => {
+                console.log(generateEngineer(input))
+            })
+        }
+        if(answers.employee === 'Intern'){
+            internInput().then((input) => {
+                console.log(generateIntern(input))
+            })
+        }
         // continueCreating().then((result) => {
         //         if(result.continue){
         //             console.log(result.continue)

@@ -1,6 +1,6 @@
 const Engineer = require('../lib/Engineer');
 const Manager = require('../lib/Manager');
-const Intern = require('../lib/Inter')
+const Intern = require('../lib/Intern')
 //this function takes in the user input and returns an object containing the relevent information
 function employeeType(choice) {
     if(typeof choice.employee[0] !== 'undefined'){
