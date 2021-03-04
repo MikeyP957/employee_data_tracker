@@ -50,3 +50,16 @@ const promtUser = () => inquirer.prompt([
     },
 ])
 
+const init = () => {
+    promptUser().then((answers) => {
+      try {
+        const html = generateHTML(answers);
+        fs.writeFileSync('index.html', html);
+        console.log('Successfully wrote to index.html');
+      } catch (error) {
+        console.log(error);
+      }
+    });
+  };
+  
+  init();
