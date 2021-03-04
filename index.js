@@ -1,10 +1,13 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 
-//generates html card for each type of employee
+//generates new object for each type of employee
 const generateManager = require('./src/generateManager');
 const generateEngineer = require('./src/generateEngineer');
 const generateIntern = require('./src/generateIntern');
+
+//takes in arrays and generates html
+const renderHTML = require('./dist/generateHTML')
 
 //inquirer for each employee type depending on pertinent information
 const typeOfEmployee = () => inquirer.prompt([
@@ -99,24 +102,29 @@ const generateHTMLPromt = () => inquirer.prompt([
 
 const init = () => {
     //create while loop, while user wants to create employees, fun this function
+    let managerArray = [];
+    let engineerArray = [];
+    let internArray = [];
+    
     continueCreating().then((response) => {
         if(response){
+
             typeOfEmployee().then((answers) => {
                 if(answers.employee === 'Manager'){
                     managerInput().then((input) => {
-                        console.log(generateManager(input))
+                        return(managerArray.push(generateManager(input)))
                         //make this return an object to push onto an array
                     })
                 }
                 if(answers.employee === 'Engineer'){
                     engineerInput().then((input) => {
-                        console.log(generateEngineer(input))
+                        return(engineerArray.push(generateEngineer(input)))
                         //make this return an object to push onto an array
                     })
                 }
                 if(answers.employee === 'Intern'){
                     internInput().then((input) => {
-                        console.log(generateIntern(input))
+                        return(internArray.push(generateIntern(input)))
                         //make this return an object to push onto an array
                     })
                 }
@@ -133,31 +141,16 @@ const init = () => {
     })
     
         //when while loop ends, create html, which will take in the arrays and generate the html.
-
-
-
-        // continueCreating().then((result) => {
-        //         if(result.continue){
-        //             console.log(result.continue)
-        //         }
-        //         else{generateHTML().then((result) => {
-        //             if(result.generate){
-        //                 console.log("html is generating")
-        //             }
-
-        //             else console.log("ok....")
-        //         }
-        //     )}        
-        // })
+     
             
-         //  try {
-         //     const html = typeOfEmployee();
-         //     console.log(typeOfEmployee(), "input for typeofemployee")
-         //     fs.writeFileSync('index.html', html);
-         //     console.log('Successfully wrote to index.html');
-         //   } catch (error) {
-         //     console.log(error);
-         //   }
+          try {
+             const html = renderHTML(managerArray, engineerArray, internArray);
+             console.log(renderHTML(), "input for renderHTML")
+             fs.writeFileSync('index.html', html);
+             console.log('Successfully wrote to index.html');
+           } catch (error) {
+             console.log(error);
+           }
     
 };
   
