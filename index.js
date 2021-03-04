@@ -1,6 +1,9 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 
+//generates html card for each type of employee
+const generateManager = require('./src/generateManager');
+//inquirer for each employee type depending on pertinent information
 const typeOfEmployee = () => inquirer.prompt([
     {
         type: 'list',
@@ -93,44 +96,45 @@ const generateHTML = () => inquirer.prompt([
 
 const init = () => {
     typeOfEmployee().then((answers) => {
-        console.log(answers)
         if(answers.employee === 'Manager'){
             managerInput().then((input) => {
-                console.log(input)
+                console.log(generateManager(input))
+                
             })
         }
-        if(answers.employee === 'Engineer'){
-            engineerInput().then((input) => {
-                console.log(input)
-            })
-        }
-        if(answers.employee === 'Intern'){
-            internInput().then((input) => {
-                console.log(input)
-            })
-        }
-    // continueCreating().then((result) => {
-    //         if(result.continue){
-    //             console.log(result.continue)
-    //         }
-    //         else{generateHTML().then((result) => {
-    //             if(result.generate){
-    //                 console.log("html is generating")
-    //             }
+        // if(answers.employee === 'Engineer'){
+        //     engineerInput().then((input) => {
+        //         console.log(input)
+        //     })
+        // }
+        // if(answers.employee === 'Intern'){
+        //     internInput().then((input) => {
+        //         console.log(input)
+        //     })
+        // }
+        // continueCreating().then((result) => {
+        //         if(result.continue){
+        //             console.log(result.continue)
+        //         }
+        //         else{generateHTML().then((result) => {
+        //             if(result.generate){
+        //                 console.log("html is generating")
+        //             }
+
+        //             else console.log("ok....")
+        //         }
+        //     )}        
+        // })
             
-    //             else console.log("ok....")
-    //         }
-    //     )}        
-    // })
-            
-        //   try {
-    //     const html = generateHTML(answers);
-    //     fs.writeFileSync('index.html', html);
-    //     console.log('Successfully wrote to index.html');
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
+         //  try {
+         //     const html = typeOfEmployee();
+         //     console.log(typeOfEmployee(), "input for typeofemployee")
+         //     fs.writeFileSync('index.html', html);
+         //     console.log('Successfully wrote to index.html');
+         //   } catch (error) {
+         //     console.log(error);
+         //   }
     });
-  };
+};
   
   init();
