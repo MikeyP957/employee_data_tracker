@@ -76,17 +76,19 @@ const internInput = () => inquirer.prompt([
         message: "What school are they associated with?"
     },
 ])
-const continueOrQuit = () => inquirer.prompt([
+const continueCreating = () => inquirer.prompt([
     {
         type: "confirm",
         name: "continue",
         message: "Do you want to create another employee input?"
-    },
+    }    
+])
+const generateHTML = () => inquirer.prompt([
     {
         type: "confirm",
         name: "generate",
         message: "Are you ready to generate the employee list?"
-    },
+    }
 ])
 
 const init = () => {
@@ -107,7 +109,19 @@ const init = () => {
                 console.log(input)
             })
         }
-        
+    // continueCreating().then((result) => {
+    //         if(result.continue){
+    //             console.log(result.continue)
+    //         }
+    //         else{generateHTML().then((result) => {
+    //             if(result.generate){
+    //                 console.log("html is generating")
+    //             }
+            
+    //             else console.log("ok....")
+    //         }
+    //     )}        
+    // })
             
         //   try {
     //     const html = generateHTML(answers);
