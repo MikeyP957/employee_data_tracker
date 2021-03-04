@@ -86,10 +86,10 @@ const continueCreating = () => inquirer.prompt([
     {
         type: "confirm",
         name: "continue",
-        message: "Do you want to create another employee input?"
+        message: "Do you want to create an employee?"
     }    
 ])
-const generateHTML = () => inquirer.prompt([
+const generateHTMLPromt = () => inquirer.prompt([
     {
         type: "confirm",
         name: "generate",
@@ -98,23 +98,44 @@ const generateHTML = () => inquirer.prompt([
 ])
 
 const init = () => {
-    typeOfEmployee().then((answers) => {
-        if(answers.employee === 'Manager'){
-            managerInput().then((input) => {
-                console.log(generateManager(input))
-                
-            })
+    //create while loop, while user wants to create employees, fun this function
+    continueCreating().then((response) => {
+        if(response){
+            typeOfEmployee().then((answers) => {
+                if(answers.employee === 'Manager'){
+                    managerInput().then((input) => {
+                        console.log(generateManager(input))
+                        //make this return an object to push onto an array
+                    })
+                }
+                if(answers.employee === 'Engineer'){
+                    engineerInput().then((input) => {
+                        console.log(generateEngineer(input))
+                        //make this return an object to push onto an array
+                    })
+                }
+                if(answers.employee === 'Intern'){
+                    internInput().then((input) => {
+                        console.log(generateIntern(input))
+                        //make this return an object to push onto an array
+                    })
+                }
+            }); 
         }
-        if(answers.employee === 'Engineer'){
-            engineerInput().then((input) => {
-                console.log(generateEngineer(input))
-            })
-        }
-        if(answers.employee === 'Intern'){
-            internInput().then((input) => {
-                console.log(generateIntern(input))
-            })
-        }
+        else(generateHTMLPromt().then((input) => {
+            if (input){
+                console.log("generate html using arrays of objects, call function")
+            }
+            else (console.log("Restart the program"))
+        })
+        )
+        
+    })
+    
+        //when while loop ends, create html, which will take in the arrays and generate the html.
+
+
+
         // continueCreating().then((result) => {
         //         if(result.continue){
         //             console.log(result.continue)
@@ -137,7 +158,7 @@ const init = () => {
          //   } catch (error) {
          //     console.log(error);
          //   }
-    });
+    
 };
   
   init();
