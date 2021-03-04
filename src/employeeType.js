@@ -18,4 +18,4 @@ function employeeType(choice) {
     else console.log('You need to choose a type of employee!')    
 }
 
-module.exports = employeeType();
+module.exports = employeeType;
