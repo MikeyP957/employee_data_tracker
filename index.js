@@ -105,53 +105,50 @@ const init = () => {
     let managerArray = [];
     let engineerArray = [];
     let internArray = [];
-    
-    continueCreating().then((response) => {
-        if(response){
 
+    continueCreating().then((response) => {
+       while(response){
             typeOfEmployee().then((answers) => {
-                if(answers.employee === 'Manager'){
-                    managerInput().then((input) => {
-                        return(managerArray.push(generateManager(input)))
-                        //make this return an object to push onto an array
-                    })
-                }
-                if(answers.employee === 'Engineer'){
-                    engineerInput().then((input) => {
-                        return(engineerArray.push(generateEngineer(input)))
-                        //make this return an object to push onto an array
-                    })
-                }
-                if(answers.employee === 'Intern'){
-                    internInput().then((input) => {
-                        return(internArray.push(generateIntern(input)))
-                        //make this return an object to push onto an array
-                    })
-                }
-            }); 
+                    if(answers.employee === 'Manager'){
+                        managerInput().then((input) => {
+                            return(managerArray.push(generateManager(input)))
+                            
+                        })
+                    }
+                    else if(answers.employee === 'Engineer'){
+                        engineerInput().then((input) => {
+                            return(engineerArray.push(generateEngineer(input)))
+                           
+                        })
+                    }
+                    else if(answers.employee === 'Intern'){
+                        internInput().then((input) => {
+                            return(internArray.push(generateIntern(input)))
+                          
+                        })
+                    }
+                               
+            });
+            break; 
         }
-        else(generateHTMLPromt().then((input) => {
-            if (input){
-                console.log("generate html using arrays of objects, call function")
-            }
-            else (console.log("Restart the program"))
-        })
-        )
-        
+                            
     })
     
-        //when while loop ends, create html, which will take in the arrays and generate the html.
-     
-            
+    generateHTMLPromt().then((response) => {
+        if (response){
           try {
-             const html = renderHTML(managerArray, engineerArray, internArray);
-             console.log(renderHTML(), "input for renderHTML")
-             fs.writeFileSync('index.html', html);
-             console.log('Successfully wrote to index.html');
-           } catch (error) {
-             console.log(error);
-           }
-    
+              const html = renderHTML(managerArray, engineerArray, internArray);
+              console.log(renderHTML(), "input for renderHTML")
+              fs.writeFileSync('index.html', html);
+              console.log('Successfully wrote to index.html');
+            } catch (error) {
+              console.log(error);
+            }
+        }
+        else(
+          console.log("??")
+        )
+    })          
 };
   
   init();

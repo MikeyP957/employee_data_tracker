@@ -1,7 +1,45 @@
-const employeeType = require("../src/employeeType")
 
 function renderHTML(managerArray,engineerArray,internArray) {
-    `<!DOCTYPE html>
+    function managerGenerate(arr) {
+        if(arr.length != null){
+            for(i = 0; i < arr.length; i++){
+                `
+                <li>Name: ${arr[i].name} </li>
+                <li>Employee ID: ${arr[i].id}</li>
+                <li>Email: ${arr[i].email}</li>
+                <li>Office number: ${arr[i].officeNumber}</li>
+                `
+            }; 
+        }
+        else return ""
+    };
+    function engineerGenerate(arr){
+        if(engineerArray.length != null){
+            for(i = 0; i < engineerArray.length; i++){
+                `
+                <li>Name: ${engineerArray[i].name} </li>
+                <li>Employee ID: ${engineerArray[i].id}</li>
+                <li>Email: ${engineerArray[i].email}</li>
+                <li>Office number: ${engineerArray[i].github}</li>
+                `
+            }; 
+        }
+        else return ""
+    }
+    function internGenerate(arr){
+        if(internArray.length != null){
+            for(i = 0; i < internArray.length; i++){
+                `
+                <li>Name: ${internArray[i].name} </li>
+                <li>Employee ID: ${internArray[i].id}</li>
+                <li>Email: ${internArray[i].email}</li>
+                <li>Office number: ${internArray[i].school}</li>
+                `
+            }; 
+        }
+        else return ""
+    }
+    return `<!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -16,56 +54,19 @@ function renderHTML(managerArray,engineerArray,internArray) {
         <div class="card managers">
             <h3>Managers</h3>
             <ul>
-            `
-            if(managerArray.length >=0){
-                for(i = 0; i < managerArray.length; i++){
-                    `
-                    <li>Name: ${managerArray[i].name} </li>
-                    <li>Employee ID: ${managerArray[i].id}</li>
-                    <li>Email: ${managerArray[i].email}</li>
-                    <li>Office number: ${managerArray[i].officeNumber}</li>
-                    `
-                }; 
-            }
-            else return ""     
-           
-            `
+            ${managerGenerate(managerArray)}
             </ul>
         </div>
         <div class="card engineers">
             <h3>Engineers</h3>
             <ul>
-               `
-               if(engineerArray.length >=0){
-                for(i = 0; i < engineerArray.length; i++){
-                    `
-                    <li>Name: ${engineerArray[i].name} </li>
-                    <li>Employee ID: ${engineerArray[i].id}</li>
-                    <li>Email: ${engineerArray[i].email}</li>
-                    <li>Office number: ${engineerArray[i].github}</li>
-                    `
-                }; 
-            }
-            else return ""
-               ` 
+               ${engineerGenerate(engineerArray)}
             </ul>
         </div>
         <div class="card interns">
             <h3>Interns</h3>
             <ul>
-            `
-            if(internArray.length >=0){
-                for(i = 0; i < internArray.length; i++){
-                    `
-                    <li>Name: ${internArray[i].name} </li>
-                    <li>Employee ID: ${internArray[i].id}</li>
-                    <li>Email: ${internArray[i].email}</li>
-                    <li>Office number: ${internArray[i].school}</li>
-                    `
-                }; 
-            }
-            else return ""
-            `
+            ${internGenerate(internArray)}
             </ul>
         </div>
     </body>
