@@ -2,7 +2,6 @@ const Engineer = require("../lib/Engineer");
 
 describe("Engineer", () => {
     describe("Initialization", () => {
-        it("should create an object with a github username", () => {
             it("should create an argument with name, id, email and github username", () => {
                 const engineer = new Engineer("Melaku", 3025, "mlichebo@example.com", "melaku32");
 
@@ -16,8 +15,8 @@ describe("Engineer", () => {
                 const cb = () => new Engineer("Melaku", 3025, "mlichebo@example.com", 2154);
                 const err = new Error("Expected parameter 'github' to be a non-empty string");
 
-                expect(cb).toEqual(err);
+                expect(cb).toThrowError(err);
             });
-        });
+        
     });
 });
