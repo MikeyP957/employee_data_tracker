@@ -29,6 +29,7 @@ THEN an HTML file is generated that displays a nicely formatted team roster base
 WHEN I click on an email address in the HTML
 
 THEN my default email program opens and populates the TO field of the email with the address
+in html 
 
 WHEN I click on the GitHub username
 
@@ -82,9 +83,12 @@ __tests__/			// jest tests
   Intern.test.js
   Manager.test.js
 dist/               // rendered output (HTML) and CSS style sheet
+
 lib/				// classes
 src/				// template helper code
+
 index.js			// runs the application
+prompts from inquirer and logic to make html
 ```
 
 The application must include `Employee`, `Manager`, `Engineer`, and `Intern` classes. The tests for these classes (in the `_tests_` directory) must ALL pass.
