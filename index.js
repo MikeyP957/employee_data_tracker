@@ -1,6 +1,11 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 
+//Arrays to store objects created by inquirer
+    let managerArray = [];
+    let engineerArray = [];
+    let internArray = [];
+
 //generates new object for each type of employee
 const generateManager = require('./src/generateManager');
 const generateEngineer = require('./src/generateEngineer');
@@ -100,55 +105,61 @@ const generateHTMLPromt = () => inquirer.prompt([
     }
 ])
 
-const init = () => {
-    //create while loop, while user wants to create employees, fun this function
-    let managerArray = [];
-    let engineerArray = [];
-    let internArray = [];
+function employeeInfo() {
+    typeOfEmployee().then((answers) => {
+        if(answers.employee === 'Manager'){
+            managerInput().then((input) => {
+                return(managerArray.push(generateManager(input)))                    
+            })
+        }
+        else if(answers.employee === 'Engineer'){
+            engineerInput().then((input) => {
+                return(engineerArray.push(generateEngineer(input)))                    
+            })
+        }
+        else if(answers.employee === 'Intern'){
+            internInput().then((input) => {
+                return(internArray.push(generateIntern(input)))                    
+            })
+        }
+    })    
+}
 
+function repeatQuestions() {
     continueCreating().then((response) => {
-       while(response){
-            typeOfEmployee().then((answers) => {
-                    if(answers.employee === 'Manager'){
-                        managerInput().then((input) => {
-                            return(managerArray.push(generateManager(input)))
-                            
-                        })
-                    }
-                    else if(answers.employee === 'Engineer'){
-                        engineerInput().then((input) => {
-                            return(engineerArray.push(generateEngineer(input)))
-                           
-                        })
-                    }
-                    else if(answers.employee === 'Intern'){
-                        internInput().then((input) => {
-                            return(internArray.push(generateIntern(input)))
-                          
-                        })
-                    }
-                               
-            });
-            break; 
+        if(response){
+            init()
         }
-                            
+        else{
+            generateHTMLPromt().then((response) => {
+                if(response){
+                    renderHTML(managerArray, engineerArray, internArray)
+                }
+                else{init()}
+            })
+        }
     })
-    
-    generateHTMLPromt().then((response) => {
-        if (response){
-          try {
-              const html = renderHTML(managerArray, engineerArray, internArray);
-              console.log(renderHTML(), "input for renderHTML")
-              fs.writeFileSync('index.html', html);
-              console.log('Successfully wrote to index.html');
-            } catch (error) {
-              console.log(error);
-            }
-        }
-        else(
-          console.log("??")
-        )
-    })          
+}
+
+const init = () => {
+    employeeInfo()
+
+    repeatQuestions()
+    // generateHTMLPromt().then((response) => {
+    //     if (response){
+    //       try {
+    //           const html = renderHTML(managerArray, engineerArray, internArray);
+    //           console.log(renderHTML(), "input for renderHTML")
+    //           fs.writeFileSync('index.html', html);
+    //           console.log('Successfully wrote to index.html');
+    //         } catch (error) {
+    //           console.log(error);
+    //         }
+    //     }
+    //     else(
+    //       console.log("??")
+    //     )
+    // })          
 };
   
   init();

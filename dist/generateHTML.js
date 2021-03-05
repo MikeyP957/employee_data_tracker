@@ -6,7 +6,7 @@ function renderHTML(managerArray,engineerArray,internArray) {
                 `
                 <li>Name: ${arr[i].name} </li>
                 <li>Employee ID: ${arr[i].id}</li>
-                <li>Email: ${arr[i].email}</li>
+                <li>Email: <a href= "mailto:${arr[i].email}">${arr[i].email}</a></li>
                 <li>Office number: ${arr[i].officeNumber}</li>
                 `
             }; 
@@ -14,32 +14,33 @@ function renderHTML(managerArray,engineerArray,internArray) {
         else return ""
     };
     function engineerGenerate(arr){
-        if(engineerArray.length != null){
-            for(i = 0; i < engineerArray.length; i++){
+        if(arr.length != null){
+            for(i = 0; i < arr.length; i++){
                 `
-                <li>Name: ${engineerArray[i].name} </li>
-                <li>Employee ID: ${engineerArray[i].id}</li>
-                <li>Email: ${engineerArray[i].email}</li>
-                <li>Office number: ${engineerArray[i].github}</li>
+                <li>Name: ${arr[i].name} </li>
+                <li>Employee ID: ${arr[i].id}</li>
+                <li>Email: "mailto:${arr[i].email}">${arr[i].email}</a></li>
+                <li>Office number: ${arr[i].github}</li>
                 `
             }; 
         }
         else return ""
     }
     function internGenerate(arr){
-        if(internArray.length != null){
-            for(i = 0; i < internArray.length; i++){
+        if(arr.length != null){
+            for(i = 0; i < arr.length; i++){
                 `
-                <li>Name: ${internArray[i].name} </li>
-                <li>Employee ID: ${internArray[i].id}</li>
-                <li>Email: ${internArray[i].email}</li>
-                <li>Office number: ${internArray[i].school}</li>
+                <li>Name: ${arr[i].name} </li>
+                <li>Employee ID: ${arr[i].id}</li>
+                <li>Email: <a href= "mailto:${arr[i].email}">${arr[i].email}</a></li>
+                <li>School: ${arr[i].school}</li>
                 `
             }; 
         }
         else return ""
     }
-    return `<!DOCTYPE html>
+    return (
+        `<!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -71,6 +72,7 @@ function renderHTML(managerArray,engineerArray,internArray) {
         </div>
     </body>
     </html>`
+    );
 }
 
 module.exports = renderHTML
