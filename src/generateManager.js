@@ -2,9 +2,16 @@ const Manager = require('../lib/Manager');
 
 function generateManager(answers){
     let newManager = new Manager(answers.name, parseInt(answers.id), answers.email, parseInt(answers.office));
-    return(
-        newManager
-    );     
+    if(answers.continue){
+        return(
+            newManager, init()
+        );
+    }
+    else{
+        return(
+            newManager, renderHTML()
+        );
+    }     
 }
 
 module.exports = generateManager;

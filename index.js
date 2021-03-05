@@ -21,7 +21,8 @@ const typeOfEmployee = () => inquirer.prompt([
         name: 'employee',
         message: 'Which type of employee do you want to create?',
         choices: ["Manager", "Engineer", "Intern"],
-    }
+    },
+    
 ])
 const managerInput = () => inquirer.prompt ([
     {
@@ -44,6 +45,12 @@ const managerInput = () => inquirer.prompt ([
         name: "office",
         message: "What is their office number?"
     },
+    {
+        type: "confirm",
+        name: "continue",
+        message: "Do you want to create another employee?"
+    } 
+    
 ])
 const engineerInput = () => inquirer.prompt([
     {
@@ -65,7 +72,13 @@ const engineerInput = () => inquirer.prompt([
         type: "input",
         name: "github",
         message: "What is their github username?"
-    }
+    },
+    {
+        type: "confirm",
+        name: "continue",
+        message: "Do you want to create another employee?"
+    } 
+    
 ])
 const internInput = () => inquirer.prompt([
     {
@@ -89,62 +102,42 @@ const internInput = () => inquirer.prompt([
         name: "school",
         message: "What school are they associated with?"
     },
-])
-const continueCreating = () => inquirer.prompt([
     {
         type: "confirm",
         name: "continue",
-        message: "Do you want to create an employee?"
-    }    
-])
-const generateHTMLPromt = () => inquirer.prompt([
-    {
-        type: "confirm",
-        name: "generate",
-        message: "Are you ready to generate the employee list?"
-    }
+        message: "Do you want to create another employee?"
+    } 
+    
 ])
 
-function employeeInfo() {
-    typeOfEmployee().then((answers) => {
+
+
+function employeeInfo(answers) {
+    
         if(answers.employee === 'Manager'){
             managerInput().then((input) => {
-                return(managerArray.push(generateManager(input)))                    
+                return(managerArray.push(generateManager(input))
+                )                    
             })
         }
-        else if(answers.employee === 'Engineer'){
+        if(answers.employee === 'Engineer'){
             engineerInput().then((input) => {
                 return(engineerArray.push(generateEngineer(input)))                    
             })
         }
-        else if(answers.employee === 'Intern'){
+         if(answers.employee === 'Intern'){
             internInput().then((input) => {
                 return(internArray.push(generateIntern(input)))                    
             })
         }
-    })    
-}
-
-function repeatQuestions() {
-    continueCreating().then((response) => {
-        if(response){
-            init()
-        }
-        else{
-            generateHTMLPromt().then((response) => {
-                if(response){
-                    renderHTML(managerArray, engineerArray, internArray)
-                }
-                else{init()}
-            })
-        }
-    })
-}
+    }
+ 
 
 const init = () => {
-    employeeInfo()
 
-    repeatQuestions()
+    typeOfEmployee().then((answers) => {
+        employeeInfo(answers)
+    })
     // generateHTMLPromt().then((response) => {
     //     if (response){
     //       try {
@@ -159,7 +152,8 @@ const init = () => {
     //     else(
     //       console.log("??")
     //     )
-    // })          
+    // })
+              
 };
   
   init();

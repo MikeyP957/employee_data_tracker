@@ -2,9 +2,16 @@ const Intern = require('../lib/Intern');
 
 function generateIntern(answers){
     let newIntern = new Intern(answers.name, parseInt(answers.id), answers.email, answers.school);
-    return(
-        newIntern
-    );     
+    if(answers.continue){
+        return(
+            newIntern, init()
+        );
+    }
+    else{
+        return(
+            newIntern, renderHTML()
+        );
+    }    
 }
 
 module.exports = generateIntern;
