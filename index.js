@@ -141,7 +141,18 @@ const init = () => {
                 init();
             }
             else{
-                console.log(managerArray, engineerArray, internArray, "the arrays to generate the html")
+                console.log(managerArray[0])
+                return false
+            }
+        }).then((generate) => {
+            if(generate === false){
+                try {
+                    const html = renderHTML(managerArray, engineerArray, internArray);
+                    fs.writeFileSync('index.html', html);
+                    console.log('Successfully wrote to index.html');
+                  } catch (error) {
+                    console.log(error);
+                  }
             }
         });
 

@@ -1,39 +1,50 @@
 
 function renderHTML(managerArray,engineerArray,internArray) {
     function managerGenerate(arr) {
-        if(arr.length != null){
+        if(arr.length != 0){
             for(i = 0; i < arr.length; i++){
                 `
-                <li>Name: ${arr[i].name} </li>
-                <li>Employee ID: ${arr[i].id}</li>
-                <li>Email: <a href= "mailto:${arr[i].email}">${arr[i].email}</a></li>
-                <li>Office number: ${arr[i].officeNumber}</li>
+                <div class="card">
+                <ul>
+                <li>Name: ${arr[i].getName()} </li>
+                <li>Employee ID: ${arr[i].getId()}</li>
+                <li>Email: <a href= "mailto:${arr[i].getEmail()}">${arr[i].getEmail()}</a></li>
+                <li>Office number: ${arr[i].getOfficeNumber()}</li>
+                
                 `
             }; 
         }
         else return ""
     };
     function engineerGenerate(arr){
-        if(arr.length != null){
+        if(arr.length != 0){
             for(i = 0; i < arr.length; i++){
                 `
-                <li>Name: ${arr[i].name} </li>
-                <li>Employee ID: ${arr[i].id}</li>
-                <li>Email: "mailto:${arr[i].email}">${arr[i].email}</a></li>
-                <li>Office number: ${arr[i].github}</li>
+                <div class="card">
+                <ul>
+                <li>Name: ${arr[i].getName()} </li>
+                <li>Employee ID: ${arr[i].getId()}</li>
+                <li>Email: "mailto:${arr[i].getEmail()}">${arr[i].getEmail()}</a></li>
+                <li>Office number: ${arr[i].getGithub()}</li>
+                </ul>
+                </div>
                 `
             }; 
         }
         else return ""
     }
     function internGenerate(arr){
-        if(arr.length != null){
+        if(arr.length != 0){
             for(i = 0; i < arr.length; i++){
                 `
-                <li>Name: ${arr[i].name} </li>
-                <li>Employee ID: ${arr[i].id}</li>
-                <li>Email: <a href= "mailto:${arr[i].email}">${arr[i].email}</a></li>
-                <li>School: ${arr[i].school}</li>
+                <div class="card">
+                <ul>
+                <li>Name: ${arr[i].getName()} </li>
+                <li>Employee ID: ${arr[i].getId()}</li>
+                <li>Email: <a href= "mailto:${arr[i].email}">${arr[i].getEmail()}</a></li>
+                <li>School: ${arr[i].getSchool()}</li>
+                </ul>
+                </div>
                 `
             }; 
         }
@@ -52,23 +63,23 @@ function renderHTML(managerArray,engineerArray,internArray) {
     <body>
         <h1>List of Employee Information</h1>
     
-        <div class="card managers">
+        <div class="container managers">
             <h3>Managers</h3>
-            <ul>
+            
             ${managerGenerate(managerArray)}
-            </ul>
+            
         </div>
-        <div class="card engineers">
+        <div class="container engineers">
             <h3>Engineers</h3>
-            <ul>
+            
                ${engineerGenerate(engineerArray)}
-            </ul>
+            
         </div>
-        <div class="card interns">
+        <div class="container interns">
             <h3>Interns</h3>
-            <ul>
+            
             ${internGenerate(internArray)}
-            </ul>
+            
         </div>
     </body>
     </html>`
