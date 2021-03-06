@@ -10,11 +10,8 @@ Because this application won’t be deployed, a link has to a walkthrough video 
 ## Technologies Used
 1. Node.js
 1. Inquirer
-1. Javascript
-  - Synchonous and Asynchronous
-  - Object Constructors
-1. Jest for Unit Testing
-  - Each class and class extension was tested using a unit test
+1. Javascript- Synchonous and Asynchronous and Object Constructors
+1. Jest for Unit Testing - Each class and class extension was tested using a unit test
 
 
 ## Demo

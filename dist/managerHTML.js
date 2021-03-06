@@ -1,7 +1,8 @@
 function managerHTML(arr) {
+    newArray = [];
     if(arr.length != 0){
         for(i = 0; i < arr.length; i++){
-            `
+            let element = `
             <div class="card">
             <ul>
             <li>Name: ${arr[i].getName()} </li>
@@ -10,7 +11,9 @@ function managerHTML(arr) {
             <li>Office number: ${arr[i].getOfficeNumber()}</li>
             
             `
-        }; 
+            newArray.push(element)
+        };
+        return newArray.join();
     }
     else return ""
 };
