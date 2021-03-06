@@ -11,10 +11,10 @@ Because this application won’t be deployed, a link has to a walkthrough video 
 1. Node.js
 1. Inquirer
 1. Javascript
-  1. Synchonous and Asynchronous
-  1. Object Constructors
+  - Synchonous and Asynchronous
+  - Object Constructors
 1. Jest for Unit Testing
-  1. Each class and class extension was tested using a unit test
+  - Each class and class extension was tested using a unit test
 
 
 ## Demo
