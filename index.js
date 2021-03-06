@@ -141,7 +141,7 @@ const init = () => {
                 init();
             }
             else{
-                console.log(managerArray[0])
+                console.log(managerArray[0].getName(), "calling method getName")
                 return false
             }
         }).then((generate) => {

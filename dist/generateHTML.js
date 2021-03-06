@@ -1,55 +1,10 @@
+const managerHTML = require("./managerHTML");
+const engineerHTML = require("./engineerHTML");
+const internHTML = require("./internHTML");
 
-function renderHTML(managerArray,engineerArray,internArray) {
-    function managerGenerate(arr) {
-        if(arr.length != 0){
-            for(i = 0; i < arr.length; i++){
-                `
-                <div class="card">
-                <ul>
-                <li>Name: ${arr[i].getName()} </li>
-                <li>Employee ID: ${arr[i].getId()}</li>
-                <li>Email: <a href= "mailto:${arr[i].getEmail()}">${arr[i].getEmail()}</a></li>
-                <li>Office number: ${arr[i].getOfficeNumber()}</li>
-                
-                `
-            }; 
-        }
-        else return ""
-    };
-    function engineerGenerate(arr){
-        if(arr.length != 0){
-            for(i = 0; i < arr.length; i++){
-                `
-                <div class="card">
-                <ul>
-                <li>Name: ${arr[i].getName()} </li>
-                <li>Employee ID: ${arr[i].getId()}</li>
-                <li>Email: "mailto:${arr[i].getEmail()}">${arr[i].getEmail()}</a></li>
-                <li>Office number: ${arr[i].getGithub()}</li>
-                </ul>
-                </div>
-                `
-            }; 
-        }
-        else return ""
-    }
-    function internGenerate(arr){
-        if(arr.length != 0){
-            for(i = 0; i < arr.length; i++){
-                `
-                <div class="card">
-                <ul>
-                <li>Name: ${arr[i].getName()} </li>
-                <li>Employee ID: ${arr[i].getId()}</li>
-                <li>Email: <a href= "mailto:${arr[i].email}">${arr[i].getEmail()}</a></li>
-                <li>School: ${arr[i].getSchool()}</li>
-                </ul>
-                </div>
-                `
-            }; 
-        }
-        else return ""
-    }
+
+function renderHTML(arr1,arr2,arr3) {
+
     return (
         `<!DOCTYPE html>
     <html lang="en">
@@ -66,19 +21,19 @@ function renderHTML(managerArray,engineerArray,internArray) {
         <div class="container managers">
             <h3>Managers</h3>
             
-            ${managerGenerate(managerArray)}
+            ${managerHTML(arr1)}
             
         </div>
         <div class="container engineers">
             <h3>Engineers</h3>
             
-               ${engineerGenerate(engineerArray)}
+               ${engineerHTML(arr2)}
             
         </div>
         <div class="container interns">
             <h3>Interns</h3>
             
-            ${internGenerate(internArray)}
+            ${internHTML(arr3)}
             
         </div>
     </body>
