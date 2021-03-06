@@ -112,48 +112,43 @@ const internInput = () => inquirer.prompt([
 
 
 
-function employeeInfo(answers) {
-    
-        if(answers.employee === 'Manager'){
-            managerInput().then((input) => {
-                return(managerArray.push(generateManager(input))
-                )                    
-            })
-        }
-        if(answers.employee === 'Engineer'){
-            engineerInput().then((input) => {
-                return(engineerArray.push(generateEngineer(input)))                    
-            })
-        }
-         if(answers.employee === 'Intern'){
-            internInput().then((input) => {
-                return(internArray.push(generateIntern(input)))                    
-            })
-        }
+function employeeInfo(answers) {    
+    if(answers.employee === 'Manager'){
+        return managerInput().then((input) => {
+            managerArray.push(generateManager(input));
+            return input.continue;                
+        })
     }
+    if(answers.employee === 'Engineer'){
+        return engineerInput().then((input) => {
+            engineerArray.push(generateEngineer(input));
+            return input.continue;                
+        })
+    }
+        if(answers.employee === 'Intern'){
+            return internInput().then((input) => {
+                internArray.push(generateIntern(input));
+                return input.continue;                
+            })
+    }    
+}
  
 
 const init = () => {
+    typeOfEmployee().then((response) => {
+        employeeInfo(response).then(shouldContinue => {
+            if(shouldContinue){              
+                init();
+            }
+            else{
+                console.log(managerArray, engineerArray, internArray, "the arrays to generate the html")
+            }
+        });
 
-    typeOfEmployee().then((answers) => {
-        employeeInfo(answers)
     })
-    // generateHTMLPromt().then((response) => {
-    //     if (response){
-    //       try {
-    //           const html = renderHTML(managerArray, engineerArray, internArray);
-    //           console.log(renderHTML(), "input for renderHTML")
-    //           fs.writeFileSync('index.html', html);
-    //           console.log('Successfully wrote to index.html');
-    //         } catch (error) {
-    //           console.log(error);
-    //         }
-    //     }
-    //     else(
-    //       console.log("??")
-    //     )
-    // })
-              
+               
 };
   
   init();
+
+  
