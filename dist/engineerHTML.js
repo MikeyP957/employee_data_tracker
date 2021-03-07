@@ -8,7 +8,7 @@ function engineerHTML(arr){
             <li>Name: ${arr[i].getName()} </li>
             <li>Employee ID: ${arr[i].getId()}</li>
             <li>Email: <a href= "mailto:${arr[i].getEmail()}">${arr[i].getEmail()}</a></li>
-            <li>Office number: ${arr[i].getGithub()}</li>
+            <li>Github Profile: <a href= "https://github.com/${arr[i].getGithub()}">${arr[i].getGithub()}</a></li>
             </ul>
             </div>
             `

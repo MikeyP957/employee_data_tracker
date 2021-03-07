@@ -11,8 +11,9 @@ const generateManager = require('./src/generateManager');
 const generateEngineer = require('./src/generateEngineer');
 const generateIntern = require('./src/generateIntern');
 
-//takes in arrays and generates html
-const renderHTML = require('./dist/generateHTML')
+//takes in arrays and generates html and CSS
+const renderHTML = require('./dist/generateHTML');
+const renderCSS = require('./dist/css');
 
 //inquirer for each employee type depending on pertinent information
 const typeOfEmployee = () => inquirer.prompt([
@@ -148,8 +149,10 @@ const init = () => {
             if(generate === false){
                 try {
                     const html = renderHTML(managerArray, engineerArray, internArray);
+                    const css = renderCSS();
                     fs.writeFileSync('index.html', html);
-                    console.log('Successfully wrote to index.html');
+                    fs.writeFileSync('style.css', css);
+                    console.log('Successfully wrote to index.html and CSS');
                   } catch (error) {
                     console.log(error);
                   }
