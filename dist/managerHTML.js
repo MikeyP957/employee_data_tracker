@@ -9,6 +9,8 @@ function managerHTML(arr) {
             <li>Employee ID: ${arr[i].getId()}</li>
             <li>Email: <a href= "mailto:${arr[i].getEmail()}">${arr[i].getEmail()}</a></li>
             <li>Office number: ${arr[i].getOfficeNumber()}</li>
+            </ul>
+            </div>
             
             `
             newArray.push(element)

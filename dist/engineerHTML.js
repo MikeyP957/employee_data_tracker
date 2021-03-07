@@ -7,7 +7,7 @@ function engineerHTML(arr){
             <ul>
             <li>Name: ${arr[i].getName()} </li>
             <li>Employee ID: ${arr[i].getId()}</li>
-            <li>Email: "mailto:${arr[i].getEmail()}">${arr[i].getEmail()}</a></li>
+            <li>Email: <a href= "mailto:${arr[i].getEmail()}">${arr[i].getEmail()}</a></li>
             <li>Office number: ${arr[i].getGithub()}</li>
             </ul>
             </div>
