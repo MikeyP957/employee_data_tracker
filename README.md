@@ -18,7 +18,8 @@ Because this application won’t be deployed, a link has to a walkthrough video 
 
 Follow the links below to see how this application functions.
 
-[Walkthrough Video](https://mikeyp957.github.io/employee_data_tracker/)
+[Walkthrough Video](https://youtu.be/99uy5VWObG4)
+  
 
 ## Functionality
 The application uses node.js and runs in the command line. Inquirer was used to ask questions and store the responses. When the user opens the terminal and types in the command, "node index.js" they are asked to choose a type of employee they would like to create. They are then asked a series of questions which relate to each employee's role, i.e. a manager is given an office number whereas an intern has an associated school. When the user is done answering the questions for the selected employee they are then promted to make another employee or not. If the user chooses to make another employee, the process starts over again, but if they choose no, then the program ends and the html and CSS is generated with the stored information.
